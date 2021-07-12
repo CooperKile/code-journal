@@ -1,0 +1,19 @@
+header {
+  background-color: #562b80;
+}
+
+h2 {
+  color: white;
+  font-weight: 200;
+}
+
+img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+input {
+  width: 100%;
+}
