@@ -39,7 +39,7 @@ $submitForm.addEventListener('submit', function (event) {
   };
   newObj.entryId = data.nextEntryId;
   data.nextEntryId++;
-  data.entries.unshift(Object);
+  data.entries.push(newObj);
   $source.setAttribute('src', './images/placeholder-image-square.jpg');
   $submitForm.reset($submitForm);
 });
