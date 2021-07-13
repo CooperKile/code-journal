@@ -16,3 +16,20 @@ $photo.addEventListener('input', function (event) {
     $source.src = $photo.value;
   }
 });
+
+// sample url https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png
+// listen for submit events
+// add an event listener to the save entry class
+// put forms input values into a new object
+// add nextEntryId to the object
+// increment nextEntryId on the data model
+// prepend the new object to the entries data model
+// reset the image previews src attribute
+// reset the input forms
+
+var $submitForm = document.getElementById('journal-form');
+$submitForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  var inputVals = {};
+  inputVals.push($submitForm.inputVals);
+});

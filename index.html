@@ -22,33 +22,35 @@
   </header>
   <div class="container">
     <div data-view="entry-form">
-      <div class="row">
-        <div class="column-full">
-          <h1>New Entry</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column-half">
-          <div class="entry-img">
-            <img src=" ">
+      <form id="journal-form">
+        <div class="row">
+          <div class="column-full">
+            <h1>New Entry</h1>
           </div>
         </div>
-        <div class="column-half">
-          <h3 class="input-title">Title</h3>
-          <input type="text" required>
-          <h3 class="input-title">Photo URL</h3>
-          <input type="url" class="photoURL" required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column-full">
-          <h3 class="input-title">Notes</h3>
-          <textarea rows="10" required></textarea>
-          <div class="save-button">
-            <button class="save-entry">SAVE</button>
+        <div class="row">
+          <div class="column-half">
+            <div class="entry-img">
+              <img src=" ">
+            </div>
+          </div>
+          <div class="column-half">
+            <h3 class="input-title">Title</h3>
+            <input type="text" required>
+            <h3 class="input-title">Photo URL</h3>
+            <input type="url" class="photoURL" required>
           </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="column-full">
+            <h3 class="input-title">Notes</h3>
+            <textarea rows="10" required></textarea>
+            <div class="save-button">
+              <button type="submit" class="save-entry">SAVE</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
     <main></main>
   </div>
