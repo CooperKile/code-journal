@@ -15,46 +15,42 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="column-full">
-    <div class="row-head">
+  <header class="head-container">
+    <div class="row container">
       <h2>Code Journal</h2>
     </div>
   </header>
   <div class="container">
-    <main>
-      <div data-view="entry-form">
-        <div class="row">
-          <div class="column-half">
-            <h1 class="new-entry row">New Entry</h1>
+    <div data-view="entry-form">
+      <div class="row">
+        <div class="column-full">
+          <h1>New Entry</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-half">
+          <div class="entry-img">
+            <img src="./images/placeholder-image-square.jpg">
           </div>
         </div>
-        <div class="row">
-          <div class="column-half">
-            <div class="image">
-              <img src="./images/placeholder-image-square.jpg" alt="">
-            </div>
-          </div>
+        <div class="column-half">
+          <h3 class="input-title">Title</h3>
+          <input type="text">
+          <h3 class="input-title">Photo URL</h3>
+          <input type="url">
         </div>
-        <div class="row">
-          <div class="column-half">
-            <h3 class="title">Photo Url</h3>
-            <input type="text">
-          </div>
-        </div>
-        <div class="row">
-          <div class="column-half">
-            <h3 class="title">Notes</h3>
-            <input type="text">
-          </div>
-        </div>
-        <div class="row">
-          <div class="column-half">
-            <h3 class="title">Notes</h3>
-            <textarea class="text-area" cols="40" rows="7"></textarea>
+      </div>
+      <div class="row">
+        <div class="column-full">
+          <h3 class="input-title">Notes</h3>
+          <textarea rows="10"></textarea>
+          <div class="save-button">
+            <button class="save-entry">SAVE</button>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+    <main></main>
   </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

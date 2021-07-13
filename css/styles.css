@@ -1,19 +1,50 @@
-header {
+.head-container {
   background-color: #562b80;
+}
+
+body {
+  background-color: rgb(241, 241, 241);
 }
 
 h2 {
   color: white;
-  font-weight: 200;
+  font-weight: 100;
+}
+
+h3 {
+  margin-bottom: 0.5rem;
 }
 
 img {
   height: 250px;
   width: 100%;
   object-fit: cover;
-  border-radius: 5px;
 }
 
 input {
   width: 100%;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+}
+
+.notes {
+  height: 8rem;
+}
+
+.save-entry {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: #562b80;
+  border-radius: 5px;
+  color: white;
+  height: 2rem;
+  width: 4rem;
+}
+
+.save-button {
+  display: flex;
+  justify-content: flex-end;
 }

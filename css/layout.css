@@ -8,12 +8,6 @@
   padding: 0 1.5rem;
 }
 
-header {
-  max-width: 575px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -36,10 +30,6 @@ header {
 
   .row-head {
     max-width: 900px;
-  }
-
-  header {
-    max-width: 100%;
   }
 
   .column-full,
