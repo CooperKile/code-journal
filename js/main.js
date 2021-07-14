@@ -10,6 +10,7 @@ var $ul = document.querySelector('ul');
 var $entryForm = document.querySelector('.entry-from');
 var $entriesTab = document.querySelector('a');
 var $entriesPage = document.querySelector('.entries-page');
+var $noEntry = document.querySelector('.no-entries');
 
 // we will be listening for someone to input a url to the photo url
 // once we recive the photoURL we will update the image source
@@ -56,17 +57,27 @@ function renderEntry(entry) {
   var columnHalf = document.createElement('div');
   columnHalf.className = 'column-half';
   rowPadding.appendChild(columnHalf);
+
   var entryImg = document.createElement('div');
   entryImg.className = 'entry-img';
   columnHalf.appendChild(entryImg);
+
   var imgSrc = document.createElement('img');
-  imgSrc.setAttribute = ('src', '$photo.value');
+  imgSrc.setAttribute('src', entry.photo);
   entryImg.appendChild(imgSrc);
+
   var entryText = document.createElement('div');
   entryText.className = 'column-half';
+  rowPadding.appendChild(entryText);
+
   var title = document.createElement('h2');
+  var titleText = document.createTextNode(entry.input);
+  title.appendChild(titleText);
   entryText.appendChild(title);
+
   var notes = document.createElement('p');
+  var notesText = document.createTextNode(entry.notes);
+  notes.appendChild(notesText);
   entryText.appendChild(notes);
   return rowPadding;
 }
@@ -113,4 +124,8 @@ $entriesTab.addEventListener('click', clickEntries);
 function clickEntries(event) {
   $entriesPage.setAttribute('class', '$entriesPage');
   $entryForm.setAttribute('class', '$entryForm hidden');
+} if (data.entries.length > 0) {
+  $noEntry.setAttribute('class', 'no-entries hidden');
+} else {
+  $noEntry.setAttribute('class', 'no-entries');
 }

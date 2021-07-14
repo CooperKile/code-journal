@@ -27,6 +27,12 @@ body {
   align-items: center;
 }
 
+.no-entries {
+  align-items: center;
+  text-align: center;
+  margin: 5rem;
+}
+
 h3 {
   margin-bottom: 0.5rem;
 }
