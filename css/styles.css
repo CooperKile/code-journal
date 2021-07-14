@@ -72,7 +72,28 @@ textarea {
   background-color: rgb(25, 114, 25);
 }
 
-.save-button {
+.save-button,
+.new-entry {
   display: flex;
   justify-content: flex-end;
+}
+
+.hidden {
+  display: none;
+}
+
+.entry-title {
+  flex-wrap: nowrap;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.center {
+  align-items: center;
+}
+
+.padding {
+  padding: 1rem;
 }

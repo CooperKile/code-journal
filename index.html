@@ -21,7 +21,7 @@
     </div>
   </header>
   <div class="container">
-    <div data-view="entry-form">
+    <div data-view="entry-form" class="hidden">
       <form id="journal-form">
         <div class="row">
           <div class="column-full">
@@ -51,9 +51,42 @@
           </div>
         </div>
       </form>
-      <div data-view="entries">
-        <ul></ul>
+    </div>
+    <div data-view="entries">
+      <div class="row">
+        <div class="column-full">
+          <div class="row between center">
+            <h1 class="entry-title">Entries</h1>
+            <div class="save-button">
+              <button class="save-entry">NEW</button>
+            </div>
+          </div>
+        </div>
       </div>
+    <ul>
+      <div class="row">
+        <div class="column-half">
+          <div class="entry-img">
+            <img src="./images/placeholder-image-square.jpg">
+          </div>
+        </div>
+        <div class="column-half">
+          <h1>Title</h1>
+          <p>Random text</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-half">
+          <div class="entry-img">
+            <img src="./images/placeholder-image-square.jpg">
+          </div>
+        </div>
+        <div class="column-half">
+          <h1>Title</h1>
+          <p>Random text</p>
+        </div>
+      </div>
+    </ul>
     </div>
   </div>
   <script src="js/data.js"></script>
