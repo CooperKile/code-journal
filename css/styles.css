@@ -95,5 +95,10 @@ textarea {
 }
 
 .padding {
-  padding: 1rem;
+  padding-bottom: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0%;
 }
