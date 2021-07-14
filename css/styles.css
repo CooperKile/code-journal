@@ -1,14 +1,22 @@
 .head-container {
   background-color: #562b80;
+  align-self: center;
 }
 
 body {
   background-color: rgb(241, 241, 241);
 }
 
-h2 {
+.header-h2 {
   color: white;
   font-weight: 100;
+}
+
+.header-h3 {
+  color: white;
+  font-weight: 100;
+  margin-left: 1rem;
+  padding: 0.4rem;
 }
 
 h3 {
