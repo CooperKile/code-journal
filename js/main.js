@@ -7,6 +7,9 @@ var $submitForm = document.getElementById('journal-form');
 var $title = document.querySelector('.input-area');
 var $notes = document.querySelector('.notes');
 var $ul = document.querySelector('ul');
+var $entryForm = document.querySelector('.entry-from');
+var $entriesTab = document.querySelector('a');
+var $entriesPage = document.querySelector('.entries-page');
 
 // we will be listening for someone to input a url to the photo url
 // once we recive the photoURL we will update the image source
@@ -57,7 +60,7 @@ function renderEntry(entry) {
   entryImg.className = 'entry-img';
   columnHalf.appendChild(entryImg);
   var imgSrc = document.createElement('img');
-  imgSrc.setAttribute = ('src', '$source.value');
+  imgSrc.setAttribute = ('src', '$photo.value');
   entryImg.appendChild(imgSrc);
   var entryText = document.createElement('div');
   entryText.className = 'column-half';
@@ -67,18 +70,6 @@ function renderEntry(entry) {
   entryText.appendChild(notes);
   return rowPadding;
 }
-
-// use a loop to create a DOM tree for each entry in data model
-// loop throough the entries
-// append it to the page by appending the function to the ul
-// append it when DOMContentLoaded event is fired
-
-function appendRenderEntry(event) {
-  for (var i = 0; i < data.entries.length; i++) {
-    $ul.appendChild(renderEntry(data.entries[i]));
-  }
-}
-window.addEventListener('DOMContentLoaded', appendRenderEntry);
 /** dom tree for entries
 <div class="row padding">
   <div class="column-half">
@@ -103,3 +94,23 @@ window.addEventListener('DOMContentLoaded', appendRenderEntry);
   </div>
 </div>
 */
+
+// use a loop to create a DOM tree for each entry in data model
+// loop throough the entries
+// append it to the page by appending the function to the ul
+// append it when DOMContentLoaded event is fired
+function appendRenderEntry(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    $ul.appendChild(renderEntry(data.entries[i]));
+  }
+}
+window.addEventListener('DOMContentLoaded', appendRenderEntry);
+
+// listen for a click event on the entries tab
+// if user presses entries tab, remove the hidden class from the data view entries element
+// add the hidden class to the form
+$entriesTab.addEventListener('click', clickEntries);
+function clickEntries(event) {
+  $entriesPage.setAttribute('class', '$entriesPage');
+  $entryForm.setAttribute('class', '$entryForm hidden');
+}
