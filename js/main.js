@@ -11,6 +11,7 @@ var $entryForm = document.querySelector('.entry-from');
 var $entriesTab = document.querySelector('a');
 var $entriesPage = document.querySelector('.entries-page');
 var $noEntry = document.querySelector('.no-entries');
+var $newEntry = document.querySelector('.new-button');
 
 // we will be listening for someone to input a url to the photo url
 // once we recive the photoURL we will update the image source
@@ -81,30 +82,6 @@ function renderEntry(entry) {
   entryText.appendChild(notes);
   return rowPadding;
 }
-/** dom tree for entries
-<div class="row padding">
-  <div class="column-half">
-    <div class="entry-img">
-      <img src="./images/placeholder-image-square.jpg">
-    </div>
-  </div>
-  <div class="column-half">
-    <h1>Title</h1>
-    <p>Random text</p>
-  </div>
-</div>
-<div class="row padding">
-  <div class="column-half">
-    <div class="entry-img">
-      <img src="./images/placeholder-image-square.jpg">
-    </div>
-  </div>
-    <div class="column-half">
-      <h1>Title</h1>
-      <p>Random text</p>
-  </div>
-</div>
-*/
 
 // use a loop to create a DOM tree for each entry in data model
 // loop throough the entries
@@ -122,10 +99,30 @@ window.addEventListener('DOMContentLoaded', appendRenderEntry);
 // add the hidden class to the form
 $entriesTab.addEventListener('click', clickEntries);
 function clickEntries(event) {
+  data.view = 'entries';
   $entriesPage.setAttribute('class', '$entriesPage');
   $entryForm.setAttribute('class', '$entryForm hidden');
 } if (data.entries.length > 0) {
   $noEntry.setAttribute('class', 'no-entries hidden');
 } else {
   $noEntry.setAttribute('class', 'no-entries');
+}
+// add an event listener to the new button
+// if user presses the button, remove hidden class from the form
+// add hidden class to the data view entries
+$newEntry.addEventListener('click', newEntry);
+function newEntry(event) {
+  data.view = 'entry-form';
+  $entryForm.setAttribute('class', '$entryForm');
+  $entriesPage.setAttribute('class', '$entriesPage hidden');
+}
+
+// if the window = entry form
+// load the page with the blank form
+// else if window = entries page
+// load the page with the entries
+if (data.view === 'entry-form') {
+  $submitForm();
+} else if (data.view === 'entries') {
+  clickEntries();
 }

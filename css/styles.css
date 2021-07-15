@@ -78,6 +78,7 @@ textarea {
   border-radius: 5px;
 }
 
+.new-entry,
 .save-entry {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -90,13 +91,14 @@ textarea {
   transition: 0.5s;
 }
 
-.save-entry:hover {
+.save-entry,
+.new-entry:hover {
   cursor: pointer;
   background-color: rgb(25, 114, 25);
 }
 
-.save-button,
-.new-entry {
+.new-button,
+.save-button {
   display: flex;
   justify-content: flex-end;
 }
