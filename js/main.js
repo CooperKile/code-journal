@@ -36,6 +36,10 @@ $photo.addEventListener('input', function (event) {
 // reset the input forms
 
 $submitForm.addEventListener('submit', submit);
+window.addEventListener('DOMContentLoaded', appendRenderEntry);
+$entriesTab.addEventListener('click', handleViewSwitch);
+$newEntry.addEventListener('click', handleViewSwitch);
+$ul.addEventListener('click', entryParent);
 function submit(event) {
   event.preventDefault();
   var newObj = {
@@ -102,13 +106,10 @@ function appendRenderEntry(event) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
 }
-window.addEventListener('DOMContentLoaded', appendRenderEntry);
 
 // listen for a click event on the entries tab
 // if user presses entries tab, remove the hidden class from the data view entries element
 // add the hidden class to the form
-$entriesTab.addEventListener('click', handleViewSwitch);
-$newEntry.addEventListener('click', handleViewSwitch);
 
 function handleViewSwitch(event) {
   var viewName = event.target.getAttribute('data-view');
@@ -130,4 +131,11 @@ function switchViews(string) {
     }
   }
 }
+
+function entryParent(event) {
+  if (event.target.matches('i.fas.fa-pen')) {
+    switchViews('entry-form');
+  }
+}
+
 switchViews(data.view);
