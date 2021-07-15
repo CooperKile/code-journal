@@ -2,13 +2,35 @@
   background-color: #562b80;
 }
 
+.row-container {
+  align-items: center;
+}
+
 body {
   background-color: rgb(241, 241, 241);
 }
 
-h2 {
+.header-h2 {
   color: white;
-  font-weight: 100;
+}
+
+.entries-a {
+  color: white;
+  font-size: 1.2em;
+}
+
+.entries-a:hover {
+  cursor: pointer;
+}
+
+.entry-nav {
+  align-items: center;
+}
+
+.no-entries {
+  align-items: center;
+  text-align: center;
+  margin: 5rem;
 }
 
 h3 {
@@ -17,7 +39,8 @@ h3 {
 
 h1,
 h2,
-h3 {
+h3,
+a {
   font-family: sans-serif;
   font-weight: 200;
 }
@@ -55,6 +78,7 @@ textarea {
   border-radius: 5px;
 }
 
+.new-entry,
 .save-entry {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -67,12 +91,39 @@ textarea {
   transition: 0.5s;
 }
 
-.save-entry:hover {
+.save-entry,
+.new-entry:hover {
   cursor: pointer;
   background-color: rgb(25, 114, 25);
 }
 
+.new-button,
 .save-button {
   display: flex;
   justify-content: flex-end;
+}
+
+.hidden {
+  display: none;
+}
+
+.entry-title {
+  flex-wrap: nowrap;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.center {
+  align-items: center;
+}
+
+.padding {
+  padding-bottom: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0%;
 }
