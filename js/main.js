@@ -72,11 +72,20 @@ function renderEntry(entry) {
   entryText.className = 'column-half';
   rowPadding.appendChild(entryText);
 
+  var row = document.createElement('div');
+  row.setAttribute('class', 'row between center');
+  entryText.appendChild(row);
+
   var title = document.createElement('h2');
   var titleText = document.createTextNode(entry.input);
   title.appendChild(titleText);
   entryText.appendChild(title);
 
+  row.appendChild(title);
+
+  var icon = document.createElement('i');
+  icon.setAttribute('class', 'fas fa-pen');
+  row.appendChild(icon);
   var notes = document.createElement('p');
   var notesText = document.createTextNode(entry.notes);
   notes.appendChild(notesText);

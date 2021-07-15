@@ -10,6 +10,11 @@ body {
   background-color: rgb(241, 241, 241);
 }
 
+i {
+  color: #562b80;
+  font-size: 24px;
+}
+
 .header-h2 {
   color: white;
 }
