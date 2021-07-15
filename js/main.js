@@ -89,6 +89,7 @@ function renderEntry(entry) {
 
   var icon = document.createElement('i');
   icon.setAttribute('class', 'fas fa-pen');
+  icon.setAttribute('data-entry-id', entry.entryId);
   row.appendChild(icon);
   var notes = document.createElement('p');
   var notesText = document.createTextNode(entry.notes);
@@ -131,11 +132,14 @@ function switchViews(string) {
     }
   }
 }
-
+// if the target matches the edit icon
+// get the data attirbute of the entry
+// use data.editing to the data entries id
 function entryParent(event) {
   if (event.target.matches('i.fas.fa-pen')) {
+    var entryId = event.target.getAttribute('data-entry-id');
+    data.editing = data.entries[entryId - 1];
     switchViews('entry-form');
   }
 }
-
 switchViews(data.view);
