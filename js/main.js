@@ -121,17 +121,4 @@ function switchViews(string) {
     }
   }
 }
-
-// add an event listener to the new button
-// if user presses the button, remove hidden class from the form
-// add hidden class to the data view entries
-
-// if the window = entry form
-// load the page with the blank form
-// else if window = entries page
-// load the page with the entries
-if (data.view === 'entry-form') {
-  switchViews(data.view);
-} else if (data.view === 'entries') {
-  switchViews(data.view);
-}
+switchViews(data.view);
