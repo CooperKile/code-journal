@@ -9,10 +9,11 @@ var data = {
 // listen for an unload on the window
 // stringify the data
 // set the item key to entry and add the dataJSON
-window.addEventListener('unload', function (event) {
+window.addEventListener('beforeunload', storeData);
+function storeData(event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('data', dataJSON);
-});
+}
 
 // get the previous Entry and assign it to a new variable
 // if the previous entry is not null

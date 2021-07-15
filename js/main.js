@@ -7,11 +7,10 @@ var $submitForm = document.getElementById('journal-form');
 var $title = document.querySelector('.input-area');
 var $notes = document.querySelector('.notes');
 var $ul = document.querySelector('ul');
-var $entryForm = document.querySelector('.entry-from');
 var $entriesTab = document.querySelector('a');
-var $entriesPage = document.querySelector('.entries-page');
 var $noEntry = document.querySelector('.no-entries');
 var $newEntry = document.querySelector('.new-button');
+var $dataView = document.querySelectorAll('div[data-view]');
 
 // we will be listening for someone to input a url to the photo url
 // once we recive the photoURL we will update the image source
@@ -49,6 +48,8 @@ function submit(event) {
   data.entries.push(newObj);
   $source.setAttribute('src', './images/placeholder-image-square.jpg');
   $submitForm.reset($submitForm);
+  $ul.prepend(renderEntry(newObj));
+  switchViews('entries');
 }
 
 // make a function that loads a dom tree
@@ -88,7 +89,7 @@ function renderEntry(entry) {
 // append it to the page by appending the function to the ul
 // append it when DOMContentLoaded event is fired
 function appendRenderEntry(event) {
-  for (var i = 0; i < data.entries.length; i++) {
+  for (var i = data.entries.length - 1; i >= 0; i--) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
 }
@@ -97,32 +98,40 @@ window.addEventListener('DOMContentLoaded', appendRenderEntry);
 // listen for a click event on the entries tab
 // if user presses entries tab, remove the hidden class from the data view entries element
 // add the hidden class to the form
-$entriesTab.addEventListener('click', clickEntries);
-function clickEntries(event) {
-  data.view = 'entries';
-  $entriesPage.setAttribute('class', '$entriesPage');
-  $entryForm.setAttribute('class', '$entryForm hidden');
-} if (data.entries.length > 0) {
-  $noEntry.setAttribute('class', 'no-entries hidden');
-} else {
-  $noEntry.setAttribute('class', 'no-entries');
+$entriesTab.addEventListener('click', handleViewSwitch);
+$newEntry.addEventListener('click', handleViewSwitch);
+
+function handleViewSwitch(event) {
+  var viewName = event.target.getAttribute('data-view');
+  switchViews(viewName);
 }
+
+function switchViews(string) {
+  for (var i = 0; i < $dataView.length; i++) {
+    if ($dataView[i].getAttribute('data-view') !== string) {
+      $dataView[i].classList.add('hidden');
+    } else {
+      $dataView[i].classList.remove('hidden');
+      data.view = string;
+    }
+    if (data.entries.length > 0) {
+      $noEntry.setAttribute('class', 'no-entries hidden');
+    } else {
+      $noEntry.setAttribute('class', 'no-entries');
+    }
+  }
+}
+
 // add an event listener to the new button
 // if user presses the button, remove hidden class from the form
 // add hidden class to the data view entries
-$newEntry.addEventListener('click', newEntry);
-function newEntry(event) {
-  data.view = 'entry-form';
-  $entryForm.setAttribute('class', '$entryForm');
-  $entriesPage.setAttribute('class', '$entriesPage hidden');
-}
 
 // if the window = entry form
 // load the page with the blank form
 // else if window = entries page
 // load the page with the entries
 if (data.view === 'entry-form') {
-  $submitForm();
+  switchViews(data.view);
 } else if (data.view === 'entries') {
-  clickEntries();
+  switchViews(data.view);
 }
