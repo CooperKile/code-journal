@@ -135,11 +135,24 @@ function switchViews(string) {
 // if the target matches the edit icon
 // get the data attirbute of the entry
 // use data.editing to the data entries id
+// switch views to the entry form
+// display the title, photo, and notes value
 function entryParent(event) {
+  var selected;
   if (event.target.matches('i.fas.fa-pen')) {
     var entryId = event.target.getAttribute('data-entry-id');
-    data.editing = data.entries[entryId - 1];
+    var test = parseInt(entryId);
+    for (var i = 0; i < data.entries.length; i++) {
+      var object = data.entries[i];
+      if (object.entryId === test) {
+        selected = object;
+      }
+    }
+    data.editing = data.entries[test];
     switchViews('entry-form');
+    $title.value = selected.input;
+    $photo.value = selected.photo;
+    $notes.value = selected.notes;
   }
 }
 switchViews(data.view);
