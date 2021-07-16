@@ -141,14 +141,14 @@ function entryParent(event) {
   var selected;
   if (event.target.matches('i.fas.fa-pen')) {
     var entryId = event.target.getAttribute('data-entry-id');
-    var test = parseInt(entryId);
+    var parsedEntry = parseInt(entryId);
     for (var i = 0; i < data.entries.length; i++) {
       var object = data.entries[i];
-      if (object.entryId === test) {
+      if (object.entryId === parsedEntry) {
         selected = object;
       }
     }
-    data.editing = data.entries[test];
+    data.editing = data.entries[parsedEntry];
     switchViews('entry-form');
     $title.value = selected.input;
     $photo.value = selected.photo;
