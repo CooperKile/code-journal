@@ -36,26 +36,53 @@ $photo.addEventListener('input', function (event) {
 // reset the input forms
 
 $submitForm.addEventListener('submit', submit);
+window.addEventListener('DOMContentLoaded', appendRenderEntry);
+$entriesTab.addEventListener('click', handleViewSwitch);
+$newEntry.addEventListener('click', handleViewSwitch);
+$ul.addEventListener('click', entryParent);
 function submit(event) {
   event.preventDefault();
-  var newObj = {
-    input: $title.value,
-    photo: $photo.value,
-    notes: $notes.value
-  };
-  newObj.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.push(newObj);
-  $source.setAttribute('src', './images/placeholder-image-square.jpg');
+  if (data.editing === null) {
+    var newObj = {
+      input: $title.value,
+      photo: $photo.value,
+      notes: $notes.value
+    };
+
+    newObj.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.push(newObj);
+    $source.setAttribute('src', './images/placeholder-image-square.jpg');
+
+    $ul.prepend(renderEntry(newObj));
+  } else {
+    data.editing.input = $title.value;
+    data.editing.photo = $photo.value;
+    data.editing.notes = $notes.value;
+    for (var i = 0; i < data.entries.length; i++) {
+
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries[i] = data.editing;
+
+        var newNode = document.querySelectorAll('.new-entry');
+
+        var editedEntry = renderEntry(data.editing);
+        newNode[i].replaceWith(editedEntry);
+      }
+    }
+  }
   $submitForm.reset($submitForm);
-  $ul.prepend(renderEntry(newObj));
   switchViews('entries');
 }
 
 // make a function that loads a dom tree
 function renderEntry(entry) {
+  var li = document.createElement('li');
+  li.setAttribute('class', 'new-entry');
+
   var rowPadding = document.createElement('div');
   rowPadding.className = 'row padding';
+  li.appendChild(rowPadding);
   var columnHalf = document.createElement('div');
   columnHalf.className = 'column-half';
   rowPadding.appendChild(columnHalf);
@@ -72,11 +99,21 @@ function renderEntry(entry) {
   entryText.className = 'column-half';
   rowPadding.appendChild(entryText);
 
+  var row = document.createElement('div');
+  row.setAttribute('class', 'row between center');
+  entryText.appendChild(row);
+
   var title = document.createElement('h2');
   var titleText = document.createTextNode(entry.input);
   title.appendChild(titleText);
   entryText.appendChild(title);
 
+  row.appendChild(title);
+
+  var icon = document.createElement('i');
+  icon.setAttribute('class', 'fas fa-pen');
+  icon.setAttribute('data-entry-id', entry.entryId);
+  row.appendChild(icon);
   var notes = document.createElement('p');
   var notesText = document.createTextNode(entry.notes);
   notes.appendChild(notesText);
@@ -93,13 +130,10 @@ function appendRenderEntry(event) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
 }
-window.addEventListener('DOMContentLoaded', appendRenderEntry);
 
 // listen for a click event on the entries tab
 // if user presses entries tab, remove the hidden class from the data view entries element
 // add the hidden class to the form
-$entriesTab.addEventListener('click', handleViewSwitch);
-$newEntry.addEventListener('click', handleViewSwitch);
 
 function handleViewSwitch(event) {
   var viewName = event.target.getAttribute('data-view');
@@ -119,6 +153,29 @@ function switchViews(string) {
     } else {
       $noEntry.setAttribute('class', 'no-entries');
     }
+  }
+}
+// if the target matches the edit icon
+// get the data attirbute of the entry
+// use data.editing to the data entries id
+// switch views to the entry form
+// display the title, photo, and notes value
+function entryParent(event) {
+  var selected;
+  if (event.target.matches('i.fas.fa-pen')) {
+    var entryId = event.target.getAttribute('data-entry-id');
+    var parsedEntry = parseInt(entryId);
+    for (var i = 0; i < data.entries.length; i++) {
+      var object = data.entries[i];
+      if (object.entryId === parsedEntry) {
+        selected = object;
+      }
+    }
+    data.editing.entryId = selected.entryId;
+    switchViews('entry-form');
+    $title.value = selected.input;
+    $photo.value = selected.photo;
+    $notes.value = selected.notes;
   }
 }
 switchViews(data.view);

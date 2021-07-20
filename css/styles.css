@@ -127,3 +127,12 @@ ul {
   list-style: none;
   padding: 0%;
 }
+
+i {
+  color: #562b80;
+  font-size: 24px;
+}
+
+i:hover {
+  cursor: pointer;
+}
