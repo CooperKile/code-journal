@@ -42,24 +42,47 @@ $newEntry.addEventListener('click', handleViewSwitch);
 $ul.addEventListener('click', entryParent);
 function submit(event) {
   event.preventDefault();
-  var newObj = {
-    input: $title.value,
-    photo: $photo.value,
-    notes: $notes.value
-  };
-  newObj.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.push(newObj);
-  $source.setAttribute('src', './images/placeholder-image-square.jpg');
+  if (data.editing === null) {
+    var newObj = {
+      input: $title.value,
+      photo: $photo.value,
+      notes: $notes.value
+    };
+
+    newObj.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.push(newObj);
+    $source.setAttribute('src', './images/placeholder-image-square.jpg');
+
+    $ul.prepend(renderEntry(newObj));
+  } else {
+    data.editing.input = $title.value;
+    data.editing.photo = $photo.value;
+    data.editing.notes = $notes.value;
+    for (var i = 0; i < data.entries.length; i++) {
+
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries[i] = data.editing;
+
+        var newNode = document.querySelectorAll('.new-entry');
+
+        var editedEntry = renderEntry(data.editing);
+        newNode[i].replaceWith(editedEntry);
+      }
+    }
+  }
   $submitForm.reset($submitForm);
-  $ul.prepend(renderEntry(newObj));
   switchViews('entries');
 }
 
 // make a function that loads a dom tree
 function renderEntry(entry) {
+  var li = document.createElement('li');
+  li.setAttribute('class', 'new-entry');
+
   var rowPadding = document.createElement('div');
   rowPadding.className = 'row padding';
+  li.appendChild(rowPadding);
   var columnHalf = document.createElement('div');
   columnHalf.className = 'column-half';
   rowPadding.appendChild(columnHalf);
@@ -148,7 +171,7 @@ function entryParent(event) {
         selected = object;
       }
     }
-    data.editing = data.entries[parsedEntry];
+    data.editing.entryId = selected.entryId;
     switchViews('entry-form');
     $title.value = selected.input;
     $photo.value = selected.photo;
