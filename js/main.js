@@ -168,15 +168,12 @@ function switchViews(string) {
 function entryParent(event) {
   var selected;
   if (event.target.matches('i.fas.fa-pen')) {
-    // console.log('this has been reached');
     var entryId = event.target.getAttribute('data-entry-id');
     var parsedEntry = parseInt(entryId);
-    // console.log(parsedEntry);
     for (var i = 0; i < data.entries.length; i++) {
       var object = data.entries[i];
       if (object.entryId === parsedEntry) {
         selected = object;
-      //  console.log(selected);
       }
     }
     data.editing = selected;
