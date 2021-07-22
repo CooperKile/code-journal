@@ -60,14 +60,19 @@ function submit(event) {
     data.editing.photo = $photo.value;
     data.editing.notes = $notes.value;
     for (var i = 0; i < data.entries.length; i++) {
-
       if (data.entries[i].entryId === data.editing.entryId) {
         data.entries[i] = data.editing;
-
-        var newNode = document.querySelectorAll('.new-entry');
-
-        var editedEntry = renderEntry(data.editing);
-        newNode[i].replaceWith(editedEntry);
+        // console.log(data.entries[i]);
+        var newNode = document.querySelectorAll('.updated-entry');
+        // console.log(newNode);
+        // var editedEntry = renderEntry(data.editing);
+        // console.log(editedEntry);
+        // console.log(renderEntry(data.editing));
+        // newNode[i].replaceWith(editedEntry);
+        for (var j = 0; j < newNode.length; j++) {
+          newNode[j].remove();
+        }
+        appendRenderEntry();
       }
     }
   }
@@ -78,7 +83,7 @@ function submit(event) {
 // make a function that loads a dom tree
 function renderEntry(entry) {
   var li = document.createElement('li');
-  li.setAttribute('class', 'new-entry');
+  li.setAttribute('class', 'updated-entry');
 
   var rowPadding = document.createElement('div');
   rowPadding.className = 'row padding';
@@ -118,7 +123,7 @@ function renderEntry(entry) {
   var notesText = document.createTextNode(entry.notes);
   notes.appendChild(notesText);
   entryText.appendChild(notes);
-  return rowPadding;
+  return li;
 }
 
 // use a loop to create a DOM tree for each entry in data model
@@ -171,7 +176,7 @@ function entryParent(event) {
         selected = object;
       }
     }
-    data.editing.entryId = selected.entryId;
+    data.editing = selected;
     switchViews('entry-form');
     $title.value = selected.input;
     $photo.value = selected.photo;
